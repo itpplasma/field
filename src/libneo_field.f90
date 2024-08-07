@@ -19,13 +19,13 @@ module libneo_field
         end select
     end function create_field_from_string
 
-    function create_example_field(ampl, ampl2) result(example_field_instance)
+    function create_example_field(ampl, ampl2) result(example_field)
         use libneo_example_field, only: example_field_t
 
         real(dp), intent(in), optional :: ampl, ampl2
-        type(example_field_t) :: example_field_instance
+        type(example_field_t) :: example_field
 
-        call example_field_instance%init_field(ampl, ampl2)
+        call example_field%init_field(ampl, ampl2)
     end function create_example_field
 
 end module libneo_field

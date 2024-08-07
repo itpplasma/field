@@ -15,12 +15,16 @@ contains
 subroutine test_example_field_init
     use libneo_example_field, only: example_field_t
 
+    print *, "test_example_field_init"
+
     call print_ok
 end subroutine test_example_field_init
 
 
 subroutine test_example_field_compute_afield
     use libneo_example_field, only: example_field_t
+
+    print *, "test_example_field_compute_afield"
 
     call print_ok
 end subroutine test_example_field_compute_afield
