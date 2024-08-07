@@ -34,12 +34,14 @@ module libneo_field
     end function create_example_field
 
 
-    function create_biotsavart_field() result(biotsavart_field)
+    function create_biotsavart_field(coils_file) result(biotsavart_field)
         use libneo_biotsavart_field, only: biotsavart_field_t
+
+        character(*), intent(in), optional :: coils_file
 
         type(biotsavart_field_t) :: biotsavart_field
 
-        call biotsavart_field%biotsavart_field_init()
+        call biotsavart_field%biotsavart_field_init(coils_file)
     end function create_biotsavart_field
 
 
