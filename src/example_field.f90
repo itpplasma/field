@@ -6,8 +6,9 @@ implicit none
 
 
 type, extends(field_t) :: example_field_t
-    real(dp) :: ampl = 1.0d-7, ampl2 = 2.0d-6
+    real(dp) :: ampl, ampl2
     contains
+        procedure :: init_field
         procedure :: compute_afield
         procedure :: compute_bfield
         procedure :: compute_abfield
@@ -15,6 +16,24 @@ end type example_field_t
 
 
 contains
+
+
+subroutine init_field(self, ampl, ampl2)
+    class(example_field_t), intent(out) :: self
+    real(dp), intent(in), optional :: ampl, ampl2
+
+    print *, "init_field"
+    if (present(ampl)) then
+        self%ampl = ampl
+    else
+        self%ampl = 1.0d-7
+    end if
+    if (present(ampl2)) then 
+        self%ampl2 = ampl2
+    else
+        self%ampl2 = 2.0d-6
+    end if
+end subroutine init_field
 
 
 subroutine compute_afield(self, x, A)

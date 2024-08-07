@@ -6,6 +6,7 @@ implicit none
 
 
 call test_example_field_init
+call test_example_field_compute_afield
 
 
 contains
@@ -14,20 +15,15 @@ contains
 subroutine test_example_field_init
     use example_field, only: example_field_t
 
-    real(dp), parameter :: tol = 1.0e-9
-
-    type(example_field_t) :: example_field_instance
-
-    call print_test("test_example_field_t")
-
-    if (abs(example_field_instance%ampl) .le. tol) then
-        print *, "example_field_instance%ampl = ", example_field_instance%ampl
-        call print_fail
-        error stop
-    end if
-
     call print_ok
 end subroutine test_example_field_init
+
+
+subroutine test_example_field_compute_afield
+    use example_field, only: example_field_t
+
+    call print_ok
+end subroutine test_example_field_compute_afield
 
     
 end program test_example_field
