@@ -1,4 +1,4 @@
-module get_field_type
+module create_field
     use field, only: field_t
     use example_field, only: example_field_t
 
@@ -6,7 +6,7 @@ module get_field_type
 
     contains
 
-    function field_type_from_string(field_type) result(field_instance)
+    function create_field_from_string(field_type) result(field_instance)
         character(*), intent(in) :: field_type
         class(field_t), allocatable :: field_instance
 
@@ -17,6 +17,6 @@ module get_field_type
             print *, "create_field: Unknown field type"
             error stop
         end select
-    end function field_type_from_string
+    end function create_field_from_string
 
-end module get_field_type
+end module create_field
