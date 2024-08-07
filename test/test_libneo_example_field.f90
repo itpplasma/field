@@ -13,14 +13,14 @@ contains
 
 
 subroutine test_example_field_init
-    use example_field, only: example_field_t
+    use libneo_example_field, only: example_field_t
 
     call print_ok
 end subroutine test_example_field_init
 
 
 subroutine test_example_field_compute_afield
-    use example_field, only: example_field_t
+    use libneo_example_field, only: example_field_t
 
     call print_ok
 end subroutine test_example_field_compute_afield

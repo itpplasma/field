@@ -1,11 +1,11 @@
-module example_field
+module libneo_example_field
 use, intrinsic :: iso_fortran_env, only: dp => real64
-use field, only: field_t
+use libneo_base_field, only: base_field_t
 
 implicit none
 
 
-type, extends(field_t) :: example_field_t
+type, extends(base_field_t) :: example_field_t
     real(dp) :: ampl, ampl2
     contains
         procedure :: init_field
@@ -22,7 +22,6 @@ subroutine init_field(self, ampl, ampl2)
     class(example_field_t), intent(out) :: self
     real(dp), intent(in), optional :: ampl, ampl2
 
-    print *, "init_field"
     if (present(ampl)) then
         self%ampl = ampl
     else
@@ -91,4 +90,4 @@ subroutine compute_abfield(self, x, A, B)
 end subroutine compute_abfield
 
 
-end module example_field
+end module libneo_example_field
