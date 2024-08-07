@@ -21,9 +21,9 @@ subroutine test_field_init
 
     type(example_field_t) :: example_field
 
-    call print_test("test_field_init")
+    call print_test("test_example_field_init")
 
-    call example_field%init_field(1.0_dp, 2.0_dp)
+    call example_field%example_field_init(1.0_dp, 2.0_dp)
 
     if (abs(example_field%ampl - 1.0_dp) > tol) then
         call print_fail
@@ -49,7 +49,7 @@ subroutine test_curla_equal_b
 
     call print_test("test_curla_equal_b")
 
-    call example_field%init_field(1.0_dp, 2.0_dp)
+    call example_field%example_field_init(1.0_dp, 2.0_dp)
 
     x = [1.0_dp, 1.0_dp, 1.0_dp]
 
@@ -86,7 +86,6 @@ function compute_curla(field, x, tol) result(curla)
     class(base_field_t), intent(in) :: field
     real(dp), intent(in) :: x(3)
     real(dp), intent(in) :: tol
-
     real(dp) :: curla(3)
 
     real(dp) :: x_temp(3), A_temp1(3), A_temp2(3)
@@ -121,7 +120,7 @@ subroutine test_divb_0
 
     call print_test("test_divb_0")
 
-    call example_field%init_field(1.0_dp, 2.0_dp)
+    call example_field%example_field_init(1.0_dp, 2.0_dp)
 
     x = [1.0_dp, 1.0_dp, 1.0_dp]
 
@@ -143,7 +142,6 @@ function compute_divb(field, x, tol) result(divb)
     class(base_field_t), intent(in) :: field
     real(dp), intent(in) :: x(3)
     real(dp), intent(in) :: tol
-
     real(dp) :: divb
 
     real(dp) :: x_temp(3), B_temp1(3), B_temp2(3)
@@ -176,7 +174,7 @@ subroutine test_compute_abfield
 
     call print_test("test_compute_abfield")
 
-    call example_field%init_field(1.0_dp, 2.0_dp)
+    call example_field%example_field_init(1.0_dp, 2.0_dp)
 
     x = [1.0_dp, 1.0_dp, 1.0_dp]
 
