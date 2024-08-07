@@ -43,4 +43,12 @@ module libneo_field
     end function create_biotsavart_field
 
 
+    subroutine destroy_field(field)
+        class(base_field_t), allocatable, intent(inout) :: field
+
+        call field%field_deinit()
+        deallocate(field)
+    end subroutine destroy_field
+
+
 end module libneo_field

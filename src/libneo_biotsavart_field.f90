@@ -13,7 +13,7 @@ type, extends(base_field_t) :: biotsavart_field_t
         procedure :: compute_abfield
         procedure :: compute_afield
         procedure :: compute_bfield
-        procedure :: biotsavart_field_deinit
+        procedure :: field_deinit
 end type biotsavart_field_t
 
 
@@ -70,13 +70,13 @@ subroutine compute_bfield(self, x, B)
 end subroutine compute_bfield
 
 
-subroutine biotsavart_field_deinit(self)
+subroutine field_deinit(self)
     use biotsavart, only: coils_deinit
 
     class(biotsavart_field_t), intent(inout) :: self
 
     call coils_deinit(self%coils)
-end subroutine biotsavart_field_deinit
+end subroutine field_deinit
 
 
 end module libneo_biotsavart_field
