@@ -23,6 +23,9 @@ module libneo_field
                 field = create_example_field(ampl, ampl2)
             case("biotsavart")
                 field = create_biotsavart_field(coils_file)
+            case default
+                print *, "Invalid field type"
+                error stop
         end select
     end function create_field
 
@@ -41,8 +44,9 @@ module libneo_field
 
         character(*), intent(in), optional :: coils_file
 
-        type(biotsavart_field_t) :: biotsavart_field
+        class(biotsavart_field_t), allocatable :: biotsavart_field
 
+        allocate(biotsavart_field)
         call biotsavart_field%biotsavart_field_init(coils_file)
     end function create_biotsavart_field
 

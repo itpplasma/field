@@ -28,11 +28,7 @@ subroutine biotsavart_field_init(self, coils_file)
     if (present(coils_file)) then
         call load_coils_from_file(coils_file, self%coils)
     else
-        call coils_init(x = (/0.0_dp,0.0_dp/), &
-                        y = (/0.0_dp,0.0_dp/), &
-                        z = (/0.0_dp,1.0_dp/), &
-                        current = (/1.0_dp,0.0_dp/), &
-                        coils = self%coils)
+        call coils_init([0.0_dp], [0.0_dp], [0.0_dp], [0.0_dp], self%coils)
     end if
 end subroutine biotsavart_field_init
 

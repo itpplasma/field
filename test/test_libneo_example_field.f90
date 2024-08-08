@@ -5,7 +5,7 @@ use test_util, only: print_test, print_ok, print_fail
 implicit none
 
 
-call test_field_init
+call test_example_field_init
 call test_curla_equal_b
 call test_divb_0
 call test_compute_abfield
@@ -14,7 +14,7 @@ call test_compute_abfield
 contains
 
 
-subroutine test_field_init
+subroutine test_example_field_init
     use libneo_example_field, only: example_field_t
 
     real(dp), parameter :: tol = 1.0e-9_dp
@@ -35,7 +35,7 @@ subroutine test_field_init
     end if
 
     call print_ok
-end subroutine test_field_init
+end subroutine test_example_field_init
 
 
 subroutine test_curla_equal_b
