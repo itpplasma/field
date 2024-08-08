@@ -13,7 +13,6 @@ type, extends(field_t) :: biotsavart_field_t
         procedure :: compute_abfield
         procedure :: compute_afield
         procedure :: compute_bfield
-        procedure :: field_deinit
 end type biotsavart_field_t
 
 
@@ -68,15 +67,6 @@ subroutine compute_bfield(self, x, B)
 
     B = compute_magnetic_field(self%coils, x)
 end subroutine compute_bfield
-
-
-subroutine field_deinit(self)
-    use biotsavart, only: coils_deinit
-
-    class(biotsavart_field_t), intent(inout) :: self
-
-    call coils_deinit(self%coils)
-end subroutine field_deinit
 
 
 end module libneo_biotsavart_field

@@ -25,13 +25,6 @@ subroutine test_create_field
         return
     end if
 
-    call destroy_field(field)
-
-    if (allocated(field)) then
-        call print_fail
-        return
-    end if
-
     call print_ok
 end subroutine test_create_field
 
@@ -47,13 +40,6 @@ subroutine test_create_biotsavart_field
     !field = create_biotsavart_field()
     field = create_field("biotsavart")
     if (.not.allocated(field)) then
-        call print_fail
-        return
-    end if
-
-    call destroy_field(field)
-
-    if (allocated(field)) then
         call print_fail
         return
     end if

@@ -12,7 +12,6 @@ type, extends(field_t) :: example_field_t
         procedure :: compute_afield
         procedure :: compute_bfield
         procedure :: compute_abfield
-        procedure :: field_deinit
 end type example_field_t
 
 
@@ -89,14 +88,6 @@ subroutine compute_abfield(self, x, A, B)
 
     call self%compute_bfield(x, B)
 end subroutine compute_abfield
-
-
-subroutine field_deinit(self)
-    class(example_field_t), intent(inout) :: self
-
-    self%ampl = 0.0d0
-    self%ampl2 = 0.0d0
-end subroutine field_deinit
 
 
 end module libneo_example_field
