@@ -81,9 +81,9 @@ end subroutine test_curla_equal_b
 
 
 function compute_curla(field, x, tol) result(curla)
-    use libneo_base_field, only: base_field_t
+    use libneo_field_base, only: field_t
 
-    class(base_field_t), intent(in) :: field
+    class(field_t), intent(in) :: field
     real(dp), intent(in) :: x(3)
     real(dp), intent(in) :: tol
     real(dp) :: curla(3)
@@ -137,9 +137,9 @@ end subroutine test_divb_0
 
 
 function compute_divb(field, x, tol) result(divb)
-    use libneo_base_field, only: base_field_t
+    use libneo_field_base, only: field_t
 
-    class(base_field_t), intent(in) :: field
+    class(field_t), intent(in) :: field
     real(dp), intent(in) :: x(3)
     real(dp), intent(in) :: tol
     real(dp) :: divb

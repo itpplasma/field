@@ -1,6 +1,9 @@
 module libneo_field
     use, intrinsic :: iso_fortran_env, only: dp => real64
-    use libneo_base_field, only: base_field_t
+    use libneo_field_base, only: field_t
+    use libneo_example_field, only: example_field_t
+    use libneo_biotsavart_field, only: biotsavart_field_t
+
 
     implicit none
 
@@ -8,34 +11,33 @@ module libneo_field
     contains
 
 
-    function create_field_from_string(field_type) result(field)
+    function create_field(field_type, ampl, ampl2, coils_file) result(field)
+        class(field_t), allocatable :: field
+
         character(*), intent(in) :: field_type
-        class(base_field_t), allocatable :: field
+        real(dp), intent(in), optional :: ampl, ampl2
+        character(*), intent(in), optional :: coils_file
 
         select case(field_type)
-        case("example")
-            field = create_example_field()
-        case("biotsavart")
-            field = create_biotsavart_field()
-        case default
-            print *, "create_field_from_string: Unknown field type"
-            error stop
+            case("example")
+                field = create_example_field(ampl, ampl2)
+            case("biotsavart")
+                field = create_biotsavart_field(coils_file)
         end select
-    end function create_field_from_string
+    end function create_field
 
 
     function create_example_field(ampl, ampl2) result(example_field)
-        use libneo_example_field, only: example_field_t
 
         real(dp), intent(in), optional :: ampl, ampl2
-        type(example_field_t) :: example_field
+        class(example_field_t), allocatable :: example_field
 
+        allocate(example_field)
         call example_field%example_field_init(ampl, ampl2)
     end function create_example_field
 
 
     function create_biotsavart_field(coils_file) result(biotsavart_field)
-        use libneo_biotsavart_field, only: biotsavart_field_t
 
         character(*), intent(in), optional :: coils_file
 
@@ -46,7 +48,7 @@ module libneo_field
 
 
     subroutine destroy_field(field)
-        class(base_field_t), allocatable, intent(inout) :: field
+        class(field_t), allocatable, intent(inout) :: field
 
         call field%field_deinit()
         deallocate(field)

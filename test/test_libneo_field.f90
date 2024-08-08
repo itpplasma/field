@@ -5,22 +5,21 @@ use test_util, only: print_test, print_ok, print_fail
 implicit none
 
 
-call test_create_field_from_string
+call test_create_field
 call test_create_biotsavart_field
 
 
 contains
 
 
-subroutine test_create_field_from_string
-    use libneo_field, only: create_field_from_string, destroy_field
-    use libneo_base_field, only: base_field_t
+subroutine test_create_field
+    use libneo_field, only: field_t, example_field_t, create_field, destroy_field 
 
-    class(base_field_t), allocatable :: field
+    class(field_t), allocatable :: field
 
-    call print_test("test_create_field_from_string")
+    call print_test("test_create_field")
 
-    field = create_field_from_string("example")
+    field = create_field("example")
     if (.not.allocated(field)) then
         call print_fail
         return
@@ -34,19 +33,19 @@ subroutine test_create_field_from_string
     end if
 
     call print_ok
-end subroutine test_create_field_from_string
+end subroutine test_create_field
 
 
 subroutine test_create_biotsavart_field
-    use libneo_field, only: create_field_from_string, destroy_field, create_biotsavart_field
-    use libneo_base_field, only: base_field_t
+    use libneo_field, only: create_field, destroy_field, create_biotsavart_field
+    use libneo_field_base, only: field_t
 
-    class(base_field_t), allocatable :: field
+    class(field_t), allocatable :: field
 
     call print_test("test_create_biotsavart_field")
 
     !field = create_biotsavart_field()
-    field = create_field_from_string("biotsavart")
+    field = create_field("biotsavart")
     if (.not.allocated(field)) then
         call print_fail
         return

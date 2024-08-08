@@ -1,12 +1,12 @@
 module libneo_biotsavart_field
 use, intrinsic :: iso_fortran_env, only: dp => real64
-use libneo_base_field, only: base_field_t
+use libneo_field_base, only: field_t
 use biotsavart, only: coils_t
 
 implicit none
 
 
-type, extends(base_field_t) :: biotsavart_field_t
+type, extends(field_t) :: biotsavart_field_t
     type(coils_t) :: coils
     contains
         procedure :: biotsavart_field_init
